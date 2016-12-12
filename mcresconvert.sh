@@ -407,10 +407,15 @@ RENAMES
 		echo -e "." >> _n/_tot
 		if [ -n "$FOLIAG" ]; then
 			convert_alphatex $FOLIAG blocks/leaves_oak.png 70+120 ${PXSIZE} default_leaves.png
+			convert_alphatex $FOLIAG blocks/leaves_oak.png 70+120 ${PXSIZE} default_leaves_simple.png
 			convert_alphatex $FOLIAG blocks/leaves_acacia.png 16+240 ${PXSIZE} default_acacia_leaves.png
+			convert_alphatex $FOLIAG blocks/leaves_acacia.png 16+240 ${PXSIZE} default_acacia_leaves_simple.png
 			convert_alphatex $FOLIAG blocks/leaves_spruce.png 226+240 ${PXSIZE} default_pine_needles.png
+			convert_alphatex $FOLIAG blocks/leaves_spruce.png 226+240 ${PXSIZE} default_pine_needles_simple.png
 			convert_alphatex $FOLIAG blocks/leaves_birch.png 70+120 ${PXSIZE} default_aspen_leaves.png
+			convert_alphatex $FOLIAG blocks/leaves_birch.png 70+120 ${PXSIZE} default_aspen_leaves_simple.png
 			convert_alphatex $FOLIAG blocks/leaves_jungle.png 16+32 ${PXSIZE} default_jungleleaves.png
+			convert_alphatex $FOLIAG blocks/leaves_jungle.png 16+32 ${PXSIZE} default_jungleleaves_simple.png
 			convert_alphatex $FOLIAG blocks/waterlily.png 16+32 ${PXSIZE} flowers_waterlily.png
 			convert_alphatex $FOLIAG blocks/waterlily.png 16+32 ${PXSIZE} flowers_waterlily_bottom.png
 			echo -e "." >> _n/_counter
@@ -478,20 +483,11 @@ RENAMES
 
 		echo -e "." >> _n/_tot
 		if [ -f _n/environment/sun.png ]; then
-			convert _n/environment/sun.png -colorspace HSB -separate _n/_mask.png
-			convert _n/environment/sun.png -fill '#a1a1a1' -draw 'color 0,0 reset' _n/_lighten.png
-			convert _n/_lighten.png _n/environment/sun.png -compose Lighten_Intensity -composite -alpha Off _n/_mask-2.png -compose CopyOpacity -composite PNG32:sun.png
-			convert sun.png -bordercolor none -border 1x1 -fuzz 0% -trim sun.png
-			rm _n/_mask*
 			echo -e "." >> _n/_counter
 		fi
+		
 		echo -e "." >> _n/_tot
 		if [ -f _n/environment/moon_phases.png ]; then
-			S=`identify -format "%[fx:w/4]" _n/environment/moon_phases.png`
-			convert _n/environment/moon_phases.png -colorspace HSB -separate _n/_mask.png
-			convert _n/environment/moon_phases.png -alpha Off _n/_mask-2.png -compose CopyOpacity -composite PNG32:moon.png
-			convert -background none moon.png -gravity NorthWest -extent ${S}x${S} moon.png
-			convert moon.png -bordercolor none -border 1x1 -fuzz 0% -trim moon.png
 			echo -e "." >> _n/_counter
 		fi
 
